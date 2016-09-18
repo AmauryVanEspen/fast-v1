@@ -5,6 +5,8 @@ namespace NL\UserBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 
 class UserType extends AbstractType
 {
@@ -18,9 +20,7 @@ class UserType extends AbstractType
             ->add('fullname')
             ->add('email')
             ->add('password')
-            ->add('birthdate', 'date')
-            ->add('createdAt', 'datetime')
-            ->add('updatedAt', 'datetime')
+            ->add('birthdate', DateType::class)
         ;
     }
     
