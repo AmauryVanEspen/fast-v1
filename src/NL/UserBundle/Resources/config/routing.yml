@@ -1,3 +1,7 @@
+nl_user_user:
+    resource: "@NLUserBundle/Resources/config/routing/user.yml"
+    prefix:   /user
+
 nl_user_homepage:
     path:     /
     defaults: { _controller: NLUserBundle:Default:index }
