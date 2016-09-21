@@ -1,4 +1,6 @@
 services:
-#    nl_user.example:
-#        class: NL\UserBundle\Example
-#        arguments: ["@service_id", "plain_value", %parameter%]
+    nl_user.reset.listener:
+        class: NL\UserBundle\Listener\ResetPasswordListener
+        arguments: [ "@doctrine.orm.entity_manager" ]
+        tags:
+            - { name: kernel.event_listener, event: users.reset_all_passwords, method: onResetPassword, monolog.logger: 'users' }

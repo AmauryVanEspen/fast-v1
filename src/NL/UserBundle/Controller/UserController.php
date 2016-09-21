@@ -7,6 +7,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use NL\UserBundle\Entity\User;
 use NL\UserBundle\Form\UserType;
+use NL\UserBundle\Event\ResetPasswordEvent;
+use NL\UserBundle\Event\NLUserEvents;
 
 /**
  * User controller.
@@ -124,5 +126,14 @@ class UserController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+
+    public function resetAllPasswordsAction()
+    {
+        $event = new ResetPasswordEvent();
+        $this->get("event_dispatcher")->dispatch(
+            NLUserEvents::RESET_ALL_PASSWORDS, $event
+        );
+        return $this->redirectToRoute('user_index');
     }
 }
